@@ -1,29 +1,18 @@
 # import
-from requests import post
+from requests import get
 import json
 import pathlib
 import os
-from police_api import PoliceAPI
 
-lat1 = "51.9042" 
+lat1 = "51.9042"
 lon1 = "-2.10141"
 append = f"lat={lat1}&lng={lon1}"
 endpoint1 = f"https://data.police.uk/api/crimes-street/stops-street?{append}"
 endpoint2 = f"https://data.police.uk/api/crimes-street/all-crime?{append}"
 
-# api = PoliceAPI()
-# city = api.get_force('gloucestershire') # Gloucestershire Constabulary
-# locale = api.get_neighbourhood(city, 'st marks')
-# print(locale.description)
-# print(api.get_latest_date())
-# {"id":"AA3","name":"St Marks"},{"id":"AB2","name":"Cheltenham Town Centre"}
-# crimes = api.get_crimes_area(city_centre.boundary, date='2020-09')
-# print(len(api.get_crimes_area(city_centre.boundary, date='2020-09')))
-# print(crimes)
-
 def get_data(endpoint):
     print(endpoint)
-    response = post(endpoint, timeout=20)
+    response = get(endpoint, timeout=20)
     if response.status_code >= 400:
         print(response.status_code)
         print(f"Request failed: { response.text }")
